@@ -40,7 +40,7 @@ public class RpcService implements ApplicationContextAware, ApplicationListener 
 
     @Override
     public void onApplicationEvent(ApplicationEvent event) {
-        ServerExecutor executor = ServerExecutor.getInstance();
+        RpcServerExecutor executor = RpcServerExecutor.getInstance();
         executor.getServerMap().put(interfaceName, applicationContext.getBean(ref));
     }
 }
