@@ -1,9 +1,10 @@
-package com.rpc.framework.namespace;
+package com.rpc.framework.refer;
 
 import com.google.common.eventbus.EventBus;
 
 /**
  * Created by liujiawei on 2017/4/22.
+ * 对应nettyrpc:reference 解析出来的bean
  */
 public class RpcReference {
     private String interfaceName;
