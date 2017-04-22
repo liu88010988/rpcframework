@@ -1,7 +1,7 @@
 package com.rpc.framework.namespace;
 
 import com.rpc.framework.serialize.SerializeProtocol;
-import com.rpc.framework.server.ServerExecutor;
+import com.rpc.framework.server.RpcServerExecutor;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -31,12 +31,12 @@ public class RpcRegistery implements InitializingBean, DisposableBean {
 
     @Override
     public void destroy() throws Exception {
-        ServerExecutor.getInstance().stop();
+        RpcServerExecutor.getInstance().stop();
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        ServerExecutor executor = ServerExecutor.getInstance();
+        RpcServerExecutor executor = RpcServerExecutor.getInstance();
         executor.setServerAddress(ipAddr);
         executor.setSerializeProtocol(Enum.valueOf(SerializeProtocol.class, protocol));
         executor.start();
