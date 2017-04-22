@@ -8,6 +8,7 @@ import org.w3c.dom.Element;
 
 /**
  * Created by liujiawei on 2017/4/22.
+ * 解析自定义的 nettyrpc:reference标签，并将bean注册到spring容器中
  */
 public class RpcRegisteryParser implements BeanDefinitionParser {
 
