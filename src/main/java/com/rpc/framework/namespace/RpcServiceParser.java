@@ -1,24 +1,28 @@
 package com.rpc.framework.namespace;
 
-import org.springframework.beans.factory.support.BeanDefinitionBuilder;
-import org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.support.RootBeanDefinition;
+import org.springframework.beans.factory.xml.BeanDefinitionParser;
+import org.springframework.beans.factory.xml.ParserContext;
 import org.w3c.dom.Element;
 
 /**
  * Created by liujiawei on 2017/4/22.
  */
-public class RpcServiceParser extends AbstractSingleBeanDefinitionParser {
-    @Override
-    protected Class<?> getBeanClass(Element element) {
-        return RpcService.class;
-    }
+public class RpcServiceParser implements BeanDefinitionParser {
 
     @Override
-    protected void doParse(Element element, BeanDefinitionBuilder builder) {
+    public BeanDefinition parse(Element element, ParserContext parserContext) {
         String interfaceName = element.getAttribute("interfaceName");
-        builder.addPropertyValue("interfaceName", interfaceName);
         String ref = element.getAttribute("ref");
-        builder.addPropertyValue("ref", ref);
+        String id = element.getAttribute("id");
+        RootBeanDefinition definition = new RootBeanDefinition();
+        definition.setBeanClass(RpcService.class);
+        definition.setLazyInit(false);
+        definition.getPropertyValues().add("interfaceName", interfaceName);
+        definition.getPropertyValues().add("ref", ref);
+        parserContext.getRegistry().registerBeanDefinition(id, definition);
+        return definition;
     }
 }
 
