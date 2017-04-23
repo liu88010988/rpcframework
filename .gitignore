@@ -45,13 +45,6 @@ hs_err_pid*
 **/log
 **/logs
 
-xjd-web/src/main/resources/*.properties
-/xjd-client/.settings/*.prefs
-/xjd-core/.settings/org.eclipse.jdt.core.prefs
-/xjd-web/.settings/org.eclipse.jdt.core.prefs
-
-!/xjd-web/src/main/resources/sentry-javaagent-home/sentry-javaagent-premain-2.0.0.jar
-
 /tree.txt
 **/.settings
 
@@ -59,7 +52,5 @@ xjd-web/src/main/resources/*.properties
 **/bin
 
 #template
-
-#/xjd-core/src/main/java/com/netease/xfjr/xjd/core/outer/pixiu/PiXiuMockService.java
 
 *.bat
