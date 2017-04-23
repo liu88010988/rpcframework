@@ -19,6 +19,7 @@ import com.google.common.collect.ClassToInstanceMap;
 import com.google.common.collect.MutableClassToInstanceMap;
 import com.rpc.framework.serialize.RpcSerializeSelector;
 import com.rpc.framework.serialize.SerializeProtocol;
+import com.rpc.framework.server.jdk.JdkServerHandler;
 import io.netty.channel.ChannelPipeline;
 
 import java.util.Map;
@@ -28,7 +29,7 @@ import java.util.Map;
  */
 public class RpcServerSerializeSelector implements RpcSerializeSelector {
 
-    private Map<String, Object> handlerMap = null;
+    private Map<String, Object> handlerMap;
 
     public RpcServerSerializeSelector(Map<String, Object> handlerMap) {
         this.handlerMap = handlerMap;
@@ -37,16 +38,15 @@ public class RpcServerSerializeSelector implements RpcSerializeSelector {
     private static ClassToInstanceMap<RpcServerHandler> handler = MutableClassToInstanceMap.create();
 
     static {
-        //TODO
+        handler.putInstance(JdkServerHandler.class, new JdkServerHandler());
     }
 
     public void select(SerializeProtocol protocol, ChannelPipeline pipeline) {
         switch (protocol) {
             case JDKSERIALIZE: {
-                //TODO
+                handler.getInstance(JdkServerHandler.class).handle(handlerMap, pipeline);
                 break;
             }
-
         }
     }
 }
