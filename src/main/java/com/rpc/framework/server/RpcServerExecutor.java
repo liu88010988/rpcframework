@@ -51,10 +51,6 @@ public class RpcServerExecutor {
         return serverMap;
     }
 
-    public void setServerMap(Map<String, Object> serverMap) {
-        this.serverMap = serverMap;
-    }
-
     public static void submit(Callable<Boolean> task, final ChannelHandlerContext ctx, final MessageRequest request, final MessageResponse response) {
         if (threadPoolExecutor == null) {
             synchronized (RpcServerExecutor.class) {
@@ -107,16 +103,8 @@ public class RpcServerExecutor {
         worker.shutdownGracefully();
     }
 
-    public String getServerAddress() {
-        return serverAddress;
-    }
-
     public void setServerAddress(String serverAddress) {
         this.serverAddress = serverAddress;
-    }
-
-    public SerializeProtocol getSerializeProtocol() {
-        return serializeProtocol;
     }
 
     public void setSerializeProtocol(SerializeProtocol serializeProtocol) {
